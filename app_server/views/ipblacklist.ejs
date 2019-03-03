@@ -1,0 +1,74 @@
+<html>
+    <title>SAU-CYBER/IPBlackList</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link   rel='stylesheet', href='//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css'>
+    <style>
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        
+    </style>
+    <body class="w3-light-grey">
+        <% include layout/header.ejs %>
+        <% include layout/sidebar.ejs %>
+        
+        <div class="w3-main" style="margin-left:290px;margin-top:43px;">
+
+            <div class="w3-container">
+                <!-- Header -->
+                <header class="w3-container" style="padding-top:10px">
+                    <h5><b><i class="fa fa-list-ul"></i> IP BlackList</b></h5>
+                </header>
+
+                <!-- Content -->
+                <div class="w3-container">
+                    <div class="w3-card-4 w3-white">
+                        <div class="w3-container">
+                            <div class="w3-row w3-section w3-margin  w3-center">
+                                <div id="IPBlackListContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblIPBlackList"  class="w3-table-all w3-hoverable" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>badIP</th>
+                                                <th>url</th>
+                                                <th>ip_update_date</th>
+                                            </tr>
+                                        </thead>
+                                    </table>    
+                                </div>                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% include components/loading.ejs %> 
+            <% include layout/footer.ejs %> 
+            <% include layout/js.ejs %> 
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(function(){
+            document.getElementById('loading').style.display = 'block';
+            $.getJSON( '/ipblacklist/get', function( queryResult ) {
+                $('#tblIPBlackList').DataTable({
+                    responsive: true,
+                    autoWidth: false,
+                    data: queryResult,
+                    columns: [
+                        { data: 'badIP',"defaultContent": "", width: '25%'},
+                        { data: 'url',"defaultContent": "", width: '30%'},
+                        { data: 'ip_update_date',"defaultContent": "", width: '30%'}
+                        ]
+                 });
+            }).done(function() {
+                document.getElementById('loading').style.display = 'none';
+            });
+                       
+        });
+    </script>
+</html>
+       

@@ -1,0 +1,46 @@
+
+<div id="alertMessage" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8">
+        <header class="w3-container w3-red">
+            <span onclick="document.getElementById('alertMessage').style.display = 'none'"
+                    class="w3-closebtn">&times;</span>
+            <h2>Hata</h2>
+        </header>
+        <div class="w3-container">
+            <p id="userAlertDesc" class="w3-margin"></p>
+        </div>
+        <footer class="w3-container w3-red">
+            <p id="technicalAlertDesc" class="w3-margin-top">Teknik Açıklama : </p>
+        </footer>
+    </div>
+</div>
+<div id="successMessage" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8">
+        <header class="w3-container w3-green">
+            <span onclick="document.getElementById('successMessage').style.display = 'none'"
+                    class="w3-closebtn">&times;</span>
+            <h2>Başarılı</h2>
+        </header>
+        <div class="w3-container">
+            <p id="userSuccessDesc" class="w3-margin"></p>
+        </div>
+        <footer class="w3-container w3-green">
+            <p id="technicalSuccessDesc" class="w3-margin-top">Teknik Açıklama : </p>
+        </footer>
+    </div>
+</div>
+<div id="warningMessage" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-8">
+        <header class="w3-container w3-yellow">
+            <span onclick="document.getElementById('warningMessage').style.display = 'none'"
+                    class="w3-closebtn">&times;</span>
+            <h2>Uyarı</h2>
+        </header>
+        <div class="w3-container">
+            <p id="userWarningDesc" class="w3-margin"></p>
+        </div>
+        <footer class="w3-container w3-yellow">
+            <p id="technicalWarningDesc" class="w3-margin-top">Teknik Açıklama : </p>
+        </footer>
+    </div>
+</div>

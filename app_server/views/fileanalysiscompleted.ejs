@@ -1,0 +1,299 @@
+<html>
+    <title>SAU-CYBER/FileAnalysisCompleted</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <style>
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        
+    </style>
+    <body class="w3-light-grey">
+        <% include layout/header.ejs %>
+        <% include layout/sidebar.ejs %>
+        
+        <div class="w3-main" style="margin-left:290px;margin-top:43px;">
+
+            <div class="w3-container">
+                <!-- Header -->
+                <header class="w3-container" style="padding-top:10px">
+                    <h5><b><i class="fa fa-files-o"></i> File Analysis Completed</b></h5>
+                </header>
+
+                <!-- Content -->
+                <div class="w3-container">
+                    <div class="w3-card-4 w3-white">
+                        <div class="w3-container">
+                            <div class="w3-row w3-section w3-margin  w3-center">
+                                <div id="FileAnalysisCompletedContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblFileAnalysisCompleted"  class="w3-table-all w3-hoverable" cellspacing="0" width="100%">
+                                    </table>   
+                                </div>                  
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <% include components/loading.ejs %> 
+            <% include layout/footer.ejs %> 
+            <% include layout/js.ejs %> 
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        //document.getElementsByClassName("tablink")[0].click();
+        function openTab(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-border-black", "");
+            }
+            document.getElementById(cityName.id).style.display = "block";
+            //evt.currentTarget.firstElementChild.className += " w3-border-black";
+        }
+    </script>
+    <script>
+        $(function(){
+            document.getElementById('loading').style.display = 'block';
+            $.getJSON( '/fileanalysiscompleted/get', function( queryResult ) {
+
+                var completed_html = '';
+                completed_html += '<table id="tblProcessResult" class="w3-table-all w3-hoverable">';
+                
+                for(var i=0; i<queryResult.length; i++)
+                {
+                    completed_html +='<tr class="w3-light-grey">'
+                                            +'<th>File Name : '+ queryResult[i].fileName +' | File UID : ' + queryResult[i].fileUID + '</th>'
+                                     +'</tr>'
+                                     +'<tr>'
+                                        +'<td>'
+                                            +'<div class="w3-row w3-margin-top">'
+                                                +'<a href="javascript: openTab(event, '+'tabFileInfo'+i+')" class="w3-col" style="width:20%">'
+                                                     +'<div class="tablink w3-bottombar w3-hover-light-grey w3-padding">File Info</div>'
+                                                +'</a>'
+                                                +'<a href="javascript: openTab(event, '+'tabScanResult'+i+')" class="w3-col" style="width:20%">'
+                                                    +'<div class="tablink w3-bottombar w3-hover-light-grey w3-padding">Scan Result</div>'
+                                                +'</a>'
+                                                +'<a href="javascript: openTab(event, '+'tabProcess'+i+')" class="w3-col" style="width:20%">'
+                                                    +'<div class=" tablink w3-bottombar w3-hover-light-grey w3-padding">Process</div>'
+                                                +'</a>'
+                                                +'<a href="javascript: openTab(event, '+'tabNetwork'+i+')" class="w3-col" style="width:20%">'
+                                                    +'<div class=" tablink w3-bottombar w3-hover-light-grey w3-padding">Network</div>'
+                                                +'</a>'
+                                                +'<a href="javascript: openTab(event, '+'tabRegistry'+i+')" class="w3-col" style="width:20%">'
+                                                    +'<div class=" tablink w3-bottombar w3-hover-light-grey w3-padding">Registry</div>'
+                                                +'</a>'
+                                            +'</div>'
+
+                                            +'<div id="tabFileInfo'+i+'" class="w3-container tab" style="display:none">'
+                                                +'<div id="fileInfoContent" class="w3-row w3-section w3-responsive">'
+                                                    +'<table id="tblFileInfo" class="w3-table-all w3-hoverable">'
+                                                        $.each(queryResult[i].fileInfo, function(k, v) {
+                                                           completed_html += '<tr><th width="20%">' + k + '</th><td>' + v  + '</td></tr>';
+                                                        });
+                               completed_html +=  '</table>'
+                                                +'</div>'
+                                            +'</div>'
+
+                                            +'<div id="tabScanResult'+i+'" class="w3-container tab" style="display:none">'
+                                                +'<div id="ScanResulContent" class="w3-row w3-section w3-responsive">'
+                                                    +'<table id="tblScanResult" class="w3-table-all w3-hoverable">'
+                                                        +'<tr><td>'+queryResult[i].avResult.avName+'</td><td>' + queryResult[i].avResult.scanResult + '</td></tr>'
+                                                        +'<tr><td>avg</td><td>' + "-" + '</td></tr>'
+                                                        +'<tr><td>avast</td><td>' + "-" + '</td></tr>'
+                                                        +'<tr><td>avira</td><td>' + "-" + '</td></tr>'
+                                                        +'<tr><td>norton</td><td>' + "-" + '</td></tr>'
+                                                        +'<tr><td>kaspersky</td><td>' + "-" + '</td></tr>'
+                                                    +'</table>'
+                                                +'</div>'
+                                            +'</div>'
+
+                                            +'<div id="tabProcess'+i+'" class="w3-container tab" style="display:none">'
+                                                +'<div id="ProcessContent" class="w3-row w3-section w3-responsive">'
+                                                    +'<table id="tblProcessResult" class="w3-table-all w3-hoverable">';
+                                                    
+                                                    for(var a=0; a<queryResult[i].processResult.length; a++)
+                                                    {
+                                                    completed_html +='<tr class="w3-light-grey">'
+                                                                         +'<th>Process ID : '+ queryResult[i].processResult[a].processID +' | Process Name : ' + queryResult[i].processResult[a].processName + '</th>'
+                                                                     +'</tr>'
+                                                                     +'<tr>'
+                                                                         +'<td>'
+                                                                            +'<table class="w3-table-all w3-hoverable">'
+                                                                                +'<tr><td>Status</td><td>' + queryResult[i].processResult[a].processStatus + '</td></tr>'
+                                                                                +'<tr><td>Process Work Path</td><td>' +queryResult[i].processResult[a].processWorkPath + '</td></tr>'
+                                                                                +'<tr><td>Process Exe Path</td><td>' + queryResult[i].processResult[a].processExePath + '</td></tr>'
+                                                                            +'</table>'
+                                                                        +'</td>'
+                                                                    +'</tr>';
+                                                    }
+                                    completed_html += '</table>'
+                                                +'</div>'
+                                            +'</div>'
+                                            +'<div id="tabNetwork'+i+'" class="w3-container tab" style="display:none">'
+                                                +'<div id="NetworkContent" class="w3-row w3-section w3-responsive">'
+                                                    +'<table id="tblNetworkResult" class="w3-table-all w3-hoverable">'
+
+                                                    for(var a=0; a<queryResult[i].networkResult.length; a++)
+                                                    {
+                                                    completed_html +='<tr class="w3-light-grey">'
+                                                                         +'<th>Process ID : '+ queryResult[i].networkResult[a].processID +' | Process Name : ' + queryResult[i].networkResult[a].processName + '</th>'
+                                                                     +'</tr>'
+                                                                     +'<tr>'
+                                                                         +'<td>'
+                                                                            +'<table class="w3-table-all w3-hoverable">'
+                                                                                +'<tr><td>Family</td><td>'+ queryResult[i].networkResult[a].family + '</td></tr>'
+                                                                                +'<tr><td>Local Address</td><td>' + queryResult[i].networkResult[a].localAddress + '</td></tr>'
+                                                                                +'<tr><td>Local Port</td><td>' + queryResult[i].networkResult[a].localPort + '</td></tr>'
+                                                                                +'<tr><td>Remote Address</td><td>' + queryResult[i].networkResult[a].remoteAddress + '</td></tr>'
+                                                                                +'<tr><td>Remote Port</td><td>' + queryResult[i].networkResult[a].remotePort +'</td></tr>'
+                                                                                +'<tr><td>Status</td><td>' + queryResult[i].networkResult[a].status + '</td></tr>'
+                                                                                +'<tr><td>File Descriptor</td><td>' + queryResult[i].networkResult[a].fileDescriptor + '</td></tr>'
+                                                                                +'<tr><td>IP Reputation Result</td><td>' + queryResult[i].networkResult[a].ipReputationResult + '</td></tr>'
+                                                                            +'</table>'
+                                                                        +'</td>'
+                                                                    +'</tr>';
+                                                    }
+                                    completed_html += '</table>'
+                                                +'</div>'
+                                            +'</div>'
+                                            +'<div id="tabRegistry'+i+'" class="w3-container tab" style="display:none">'
+                                                +'<div id="RegistryContent" class="w3-row w3-section w3-responsive">'
+                                                    +'<table id="tblRegistryResult" class="w3-table-all w3-hoverable">'
+                                                        +'<tr id="trHcr" class="w3-light-grey">'+
+                                                            '<td><a href="javascript:setHcrToggle()">HKEY_CLASSES_ROOT</a></td>'+
+                                                        '</tr>'+
+                                                        '<tr id="trHcrData">'+
+                                                            '<td>'+
+                                                                    '<table class="w3-table-all w3-hoverable">'+
+                                                                        '<thead><tr>'+
+                                                                            '<th>Eklenen Veriler</th>'+
+                                                                            '<th>Silinen Veriler</th>'+
+                                                                        '</tr></thead>'+
+                                                                        '<tr>'+
+                                                                            '<td>' + queryResult[i].registryResult["insertedResult"].HKEY_CLASSES_ROOT +'</td>'+
+                                                                            '<td>' + queryResult[i].registryResult["deletedResult"].HKEY_CLASSES_ROOT  +'</td>'+
+                                                                        '</tr>'+
+                                                                    '</table>'+
+                                                            '</td>'+
+                                                        '</tr>'+
+                                                        '<tr class="w3-light-grey">'+
+                                                            '<td><a href="javascript:setHcuToggle()"> HKEY_CURRENT_USER</a></td>'+
+                                                        '</tr>'+
+                                                        '<tr id = "trHcuData" >'+
+                                                            '<td>'+
+                                                                    '<table class="w3-table-all w3-hoverable">'+
+                                                                        '<thead><tr>'+
+                                                                            '<th>Eklenen Veriler</th>'+
+                                                                            '<th>Silinen Veriler</th>'+
+                                                                        '</tr></thead>'+
+                                                                        '<tr>'+
+                                                                            '<td>' + queryResult[i].registryResult["insertedResult"].HKEY_CURRENT_USER +'</td>'+
+                                                                            '<td>' + queryResult[i].registryResult["deletedResult"].HKEY_CURRENT_USER  +'</td>'+
+                                                                        '</tr>'+
+                                                                    '</table>'+
+                                                            '</td>'+
+                                                        '</tr>'+
+                                                        '<tr class="w3-light-grey">'+
+                                                            '<td><a href="javascript:setHlmToggle()"> HKEY_LOCAL_MACHINE </a></td>'+
+                                                        '</tr>'+
+                                                        '<tr id="trHlmData" >'+
+                                                            '<td>'+
+                                                                    '<table class="w3-table-all w3-hoverable">'+
+                                                                        '<thead><tr>'+
+                                                                            '<th>Eklenen Veriler</th>'+
+                                                                            '<th>Silinen Veriler</th>'+
+                                                                        '</tr></thead>'+
+                                                                        '<tr>'+
+                                                                            '<td>' + queryResult[i].registryResult["insertedResult"].HKEY_LOCAL_MACHINE +'</td>'+
+                                                                            '<td>' + queryResult[i].registryResult["deletedResult"].HKEY_LOCAL_MACHINE  +'</td>'+
+                                                                        '</tr>'+
+                                                                    '</table>'+
+                                                            '</td>'+
+                                                        '</tr>'+
+                                                        '<tr class="w3-light-grey">'+
+                                                            '<td><a href="javascript:setHuToggle()"> HKEY_USERS </a></td>'+
+                                                        '</tr>'+
+                                                        '<tr id="trHuData" >'+
+                                                            '<td>'+
+                                                                    '<table class="w3-table-all w3-hoverable">'+
+                                                                        '<thead><tr>'+
+                                                                            '<th>Eklenen Veriler</th>'+
+                                                                            '<th>Silinen Veriler</th>'+
+                                                                        '</tr></thead>'+
+                                                                        '<tr>'+
+                                                                            '<td>' + queryResult[i].registryResult["insertedResult"].HKEY_USERS +'</td>'+
+                                                                            '<td>' + queryResult[i].registryResult["deletedResult"].HKEY_USERS  +'</td>'+
+                                                                        '</tr>'+
+                                                                    '</table>'+
+                                                            '</td>'+
+                                                        '</tr>'+
+                                                        '<tr class="w3-light-grey">'+
+                                                            '<td><a href="javascript:setHccToggle()"> HKEY_CURRENT_CONFIG </a></td>'+
+                                                        '</tr>'+
+                                                        '<tr id="trHccData" >'+
+                                                            '<td>'+
+                                                                    '<table class="w3-table-all w3-hoverable">'+
+                                                                        '<thead><tr>'+
+                                                                            '<th>Eklenen Veriler</th>'+
+                                                                            '<th>Silinen Veriler</th>'+
+                                                                        '</tr></thead>'+
+                                                                        '<tr>'+
+                                                                            '<td>' + queryResult[i].registryResult["insertedResult"].HKEY_CURRENT_CONFIG +'</td>'+
+                                                                            '<td>' + queryResult[i].registryResult["deletedResult"].HKEY_CURRENT_CONFIG  +'</td>'+
+                                                                        '</tr>'+
+                                                                    '</table>'+
+                                                            '</td>'+
+                                                        '</tr>'
+                                                    +'</table>'
+                                                +'</div>'
+                                            +'</div>'
+                                        +'</td>'
+                                     +'</tr>';
+                }
+                completed_html += '</table>';                
+                $('#tblFileAnalysisCompleted').html(completed_html);
+            }).done(function() {
+                document.getElementById('loading').style.display = 'none';
+            });
+        });
+        /*Registry toggle*/
+        // function setHcrToggle(){
+        //     $( document ).ready(function() {
+        //         $("#trHcrData").slideToggle();
+        //     });
+        // };
+
+        // function setHcuToggle(){
+        //     $( document ).ready(function() {
+        //         $("#trHcuData").slideToggle();
+        //     });
+        // };
+        
+        // function setHlmToggle(){
+        //     $( document ).ready(function() {
+        //         $("#trHlmData").slideToggle();
+        //     });
+        // };
+
+        // function setHuToggle(){
+        //     $( document ).ready(function() {
+        //         $("#trHuData").slideToggle();
+        //     });
+        // };
+
+        // function setHccToggle(){
+        //     $( document ).ready(function() {
+        //         $("#trHccData").slideToggle();
+        //     });
+        // };
+    </script>
+</html>
+       

@@ -1,0 +1,50 @@
+<html>
+    <title>SAU-CYBER</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    <body class="w3-light-grey">
+        <div class="w3-container w3-display-middle">
+            <div class="w3-modal-content w3-animate-top w3-card-8" style="width:500px">
+                <header class="w3-container w3-black"> 
+                    <h2>Sign Up</h2>
+                </header>
+                <div class="w3-container">
+                    <% if (message.length > 0) { %>
+                            <div class="w3-panel w3-red"><%= message %></div>
+                    <% } %>
+                    <form action="/signup" method="POST">
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i>
+                            </div>
+                            <div class="w3-rest">
+                                <input id="username" name="username" class="w3-input w3-border" type="text" placeholder="User Name">
+                            </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-lock"></i>
+                            </div>
+                            <div class="w3-rest">
+                                <input id="password"  name="password" class="w3-input w3-border" type="Password" placeholder="Password">
+                            </div>
+                        </div>
+
+
+                        <footer class="w3-container w3-white">
+                            <button id="register" name="register" type="submit" class="w3-btn-block w3-section w3-black w3-ripple w3-padding">Sign Up</button>
+                            <a href="/" class="w3-button fa fa-arrow-left"> Back</a>
+                        </footer>
+                    </form>
+                </div> 
+            </div>
+        </div>
+
+        <% include layout/js.ejs %> 
+    </body>
+</html>

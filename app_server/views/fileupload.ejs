@@ -1,0 +1,482 @@
+<html>
+    <title>SAU-CYBER/FileAnalysis</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <style>
+        html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    <body class="w3-light-grey">
+        <% include layout/header.ejs %>
+        <% include layout/sidebar.ejs %>
+        
+        <div class="w3-main" style="margin-left:290px;margin-top:43px;">
+
+            <div class="w3-container">
+                <!-- Header -->
+                <header class="w3-container" style="padding-top:10px">
+                    <h5><b><i class="fa fa-File"></i> File Analysis</b></h5>
+                </header>
+
+                <!-- Content -->
+                <div class="w3-container">
+                    <div class="w3-card-4 w3-white">
+                        <div class="w3-container">
+                            <div class="w3-row w3-section w3-margin  w3-center">
+                                
+                                <form id="formUploadFiles" method="post" action="/upload_photos" enctype="multipart/form-data">
+                                    <div class="w3-row" align="center">
+                                        <input id="fuScanFiles" type="file" multiple="multiple" class="w3-button w3-gray" style="width:50%;"/>
+                                        <input type="hidden" name="csrf_token" value="just_a_text_field" />
+                                        <input id="btnUploadFile" class="w3-btn" type="submit" value="Upload" style="height:45px;"/>
+                                        
+                                        <div class="w3-light-gray w3-margin-top w3-center" style="width:56%;height:10px;">
+                                            <div id="progressBar" class="w3-container w3-black  progress-bar" style="height:10px;width:0%">
+                                                <p id="percent"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>      
+                                                       
+                            </div>
+                        </div>
+                    </div>
+                      
+                    <div  class="w3-card-4 w3-white w3-margin-top">
+                        <div class="w3-container">
+                            <div class="w3-row w3-margin-top w3-margin-bottom w3-responsive">
+                                <table class="w3-table-all w3-hoverable">
+                                    <tr>
+                                        <th width="20%">File Name</th>
+                                        <td id="tdFileName">-</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Sha256</th>
+                                        <td id="tdSha256">-</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Analysis Timestamp</th>
+                                        <td id="tdAnalysisTimestamp">-</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div  class="w3-card-4 w3-white w3-margin-top w3-margin-bottom">
+                        <div class="w3-container">
+                            <div class="w3-row w3-margin-top">
+                                <a href="javascript:void(0)" onclick="openTab(event, 'tabFileInfo');" class="w3-col" style="width:20%">
+                                    <div class="tablink w3-bottombar w3-hover-light-grey w3-padding">File Info</div>
+                                </a>
+                                <a href="javascript:void(0)" onclick="openTab(event, 'tabScanResult');" class="w3-col" style="width:20%">
+                                    <div class="tablink w3-bottombar w3-hover-light-grey w3-padding">Scan Result</div>
+                                </a>
+                                <a href="javascript:void(0)" onclick="openTab(event, 'tabProcess');" class="w3-col" style="width:20%">
+                                    <div class="tablink w3-bottombar w3-hover-light-grey w3-padding">Process</div>
+                                </a>
+                                <a href="javascript:void(0)" onclick="openTab(event, 'tabNetwork');" class="w3-col" style="width:20%">
+                                    <div class="tablink w3-bottombar w3-hover-light-grey w3-padding">Network</div>
+                                </a>
+                                <a href="javascript:void(0)" onclick="openTab(event, 'tabRegistry');" class="w3-col" style="width:20%">
+                                    <div class="tablink w3-bottombar w3-hover-light-grey w3-padding">Registry</div>
+                                </a>
+                            </div>
+
+                            <div id="tabFileInfo" class="w3-container tab" style="display:none">
+                                <div id="fileInfoContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblFileInfo" class="w3-table-all w3-hoverable">
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="tabScanResult" class="w3-container tab" style="display:none">
+                                <div id="ScanResulContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblScanResult" class="w3-table-all w3-hoverable">
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div id="tabProcess" class="w3-container tab" style="display:none">
+                                <div id="ProcessContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblProcessResult" class="w3-table-all w3-hoverable">
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="tabNetwork" class="w3-container tab" style="display:none">
+                                <div id="NetworkContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblNetworkResult" class="w3-table-all w3-hoverable">
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="tabRegistry" class="w3-container tab" style="display:none">
+                                <div id="RegistryContent" class="w3-row w3-section w3-responsive">
+                                    <table id="tblRegistryResult" class="w3-table-all w3-hoverable">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>           
+                </div>
+            </div>
+            <% include components/loading.ejs %> 
+            <% include layout/footer.ejs %> 
+            <% include layout/js.ejs %> 
+            <% include components/messages.ejs %> 
+            
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        document.getElementsByClassName("tablink")[0].click();
+        function openTab(evt, cityName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-border-black", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-border-black";
+        }
+
+        $('#fuScanFiles').on('change', function () {
+            $('.progress-bar').width('-30%');
+        });
+
+        $('#formUploadFiles').on('submit', function (event) {
+            event.preventDefault();
+
+            var files = $('#fuScanFiles').get(0).files,
+                formData = new FormData();
+
+            if (files.length === 0) {
+                $('#userAlertDesc').html("Yüklemek için bir dosya seçiniz..");
+                document.getElementById('alertMessage').style.display = 'block';
+                return false;
+            }
+
+            if (files.length > 3) {
+                $('#userAlertDesc').html("En fazla 3 dosya yükleyebilirsiniz..");
+                document.getElementById('alertMessage').style.display = 'block';
+                return false;
+            }
+
+            for (var i=0; i < files.length; i++) {
+                var file = files[i];
+                formData.append('files[]', file, file.name);
+            }
+
+            uploadFiles(formData); 
+        });
+
+        function uploadFiles(formData) {
+            $.ajax({
+                url: '/fileupload',
+                method: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                xhr: function () {
+                    var xhr = new XMLHttpRequest();
+
+                    xhr.upload.addEventListener('progress', function (event) {
+                        var elem = document.getElementById("progressBar");   
+                        var width = 0;
+                        var id = setInterval(frame, 0);
+                        function frame() {
+                            if (width >= 100) {
+                                clearInterval(id);
+                            } else {
+                                width++; 
+                                elem.style.width = width + '%'; 
+                                document.getElementById("percent").innerHTML = width * 1  + '%';
+                            }
+                        }
+                    });
+
+                    return xhr;
+                }
+            }).done(handleSuccess).fail(function (xhr, status) { alert(status); });
+        }
+
+        function handleSuccess(data) {
+            
+            if (data != null) {
+
+            } else {
+                $('#userAlertDesc').html("Data boş geldi..");
+                document.getElementById('alertMessage').style.display = 'block';
+            }
+        }
+    </script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script>
+        $(function(){
+            var socket = io.connect("http://192.168.175.154:5050");
+            
+            socket.on("connect", function(){
+                alert("cliet-server is connected");
+            });
+            /* File Info Header */
+            socket.on("clientFileInfoHeader", function(data){
+                
+                document.getElementById('loading').style.display = 'block';
+
+                var fileInfoHeader = JSON.parse(data);
+                
+                $('#tdFileName').html(fileInfoHeader.fileName);
+                $('#tdSha256').html(fileInfoHeader.fileSHA256);
+                $('#tdAnalysisTimestamp').html(fileInfoHeader.analysisTimestamp);
+                setTimeout(function(){                  
+                    document.getElementById('loading').style.display = 'none';
+                }, 1000);
+            });
+            /* File Info Detail */
+            socket.on("clientFileInfo", function(data){
+
+                document.getElementById('loading').style.display = 'block';
+                
+                var jsonFileInfo = JSON.parse(data);
+                var fileInfo = jsonFileInfo.data[0];
+                
+                $('#tblFileInfo').html('<table class="w3-table-all w3-hoverable"></table>');
+                $.each(fileInfo, function(k, v) {
+                    $('#tblFileInfo').append('<tr><th width="20%">' + k + '</th><td>' + v  + '</td></tr>');
+                });
+                setTimeout(function(){                  
+                    document.getElementById('loading').style.display = 'none';
+                }, 1000);
+
+            });
+            /* File Scan Result */
+            socket.on("clientScanResult", function(data){
+
+                document.getElementById('loading').style.display = 'block';
+
+                var scanResult = JSON.parse(data);
+                var html = '';
+                $('#tblScanResult').html('<table class="w3-table-all w3-hoverable"><thead><tr class="w3-light-grey"><th>Antivirus</th><th>Result</th></tr></thead></table>');
+                html += '<tr><td>eset</td><td>' + scanResult + '</td></tr>';
+                html += '<tr><td>avg</td><td>' + "-" + '</td></tr>';
+                html += '<tr><td>avast</td><td>' + "-" + '</td></tr>';
+                html += '<tr><td>avira</td><td>' + "-" + '</td></tr>';
+                html += '<tr><td>norton</td><td>' + "-" + '</td></tr>';
+                html += '<tr><td>kaspersky</td><td>' + "-" + '</td></tr>';
+                $('#tblScanResult').append(html); 
+                setTimeout(function(){                  
+                    document.getElementById('loading').style.display = 'none';
+                }, 1000);
+            });
+            /* Process Network Result */
+            socket.on("clientProcessNetwork", function(data){
+                
+                document.getElementById('loading').style.display = 'block';
+
+                var stringData = JSON.parse(data);
+                var splitData = stringData.split('$');
+
+                var processData = splitData[0];
+                var networkData = splitData[1];
+                                
+                var processArray = processData.split('#').map(function(n) {
+                    return String(n);
+                });
+                var networkArray = networkData.split('#').map(function(n) {
+                    return String(n);
+                });
+
+                var process_html = '';
+                process_html += '<table id="tblProcessResult" class="w3-table-all w3-hoverable">';
+
+                for(var i=0; i<processArray.length; i++)
+                {
+                    var jsonData = JSON.parse(processArray[i]);
+                    
+                    process_html += '<tr class="w3-light-grey">'
+                                        +'<th>Process ID : '+ jsonData.processID +' | Process Name : ' + jsonData.processName + '</th>'
+                                    +'</tr>'
+                                    +'<tr>'
+                                        +'<td>'
+                                            +'<table class="w3-table-all w3-hoverable">'
+                                                +'<tr><td>Status</td><td>' + jsonData.processStatus + '</td></tr>'
+                                                +'<tr><td>Process Work Path</td><td>' + jsonData.processWorkPath + '</td></tr>'
+                                                +'<tr><td>Process Exe Path</td><td>' + jsonData.processExePath + '</td></tr>'
+                                            +'</table>'
+                                        +'</td>'
+                                    +'</tr>';
+                }
+                process_html += '</table>';
+                $('#tblProcessResult').html(process_html);
+
+                var network_html = '';
+                network_html += '<table id="tblProcessResult" class="w3-table-all w3-hoverable">';
+                
+                for(var i=0; i<networkArray.length; i++)
+                {
+                    var jsonData = JSON.parse(networkArray[i]);
+
+                    network_html += '<tr class="w3-light-grey">'
+                                        +'<th>Process ID : '+ jsonData.processID +' | Process Name : ' + jsonData.processName + '</th>'
+                                    +'</tr>'
+                                    +'<tr>'
+                                        +'<td>'
+                                            +'<table class="w3-table-all w3-hoverable">'
+                                                +'<tr><td>Family</td><td>'+ jsonData.family + '</td></tr>'
+                                                +'<tr><td>Local Address</td><td>' + jsonData.localAddress + '</td></tr>'
+                                                +'<tr><td>Local Port</td><td>' + jsonData.localPort + '</td></tr>'
+                                                +'<tr><td>Remote Address</td><td>' + jsonData.remoteAddress + '</td></tr>'
+                                                +'<tr><td>Remote Port</td><td>' + jsonData.remotePort +'</td></tr>'
+                                                +'<tr><td>Status</td><td>' + jsonData.status + '</td></tr>'
+                                                +'<tr><td>File Descriptor</td><td>' + jsonData.fileDescriptor + '</td></tr>'
+                                                +'<tr><td>IP Reputation Result</td><td>' + jsonData.ipReputation + '</td></tr>'
+                                            +'</table>'
+                                        +'</td>'
+                                    +'</tr>';
+                }
+                network_html += '</table>';
+                $('#tblNetworkResult').html(network_html);
+
+                setTimeout(function(){                  
+                    document.getElementById('loading').style.display = 'none';
+                }, 1000);
+            });
+            /* Resgistry Result */
+            socket.on("clientRegistry", function(data){
+                
+                document.getElementById('loading').style.display = 'block';
+
+                var registryResult = JSON.parse(data);
+                var html = '';
+                $('#tblRegistryResult').html('<table id="tblRegistryResult" class="w3-table-all w3-hoverable">'+
+                      '<tr id="trHcr" class="w3-light-grey">'+
+                            '<td><a href="javascript:setHcrToggle()">HKEY_CLASSES_ROOT</a></td>'+
+                        '</tr>'+
+                        '<tr id="trHcrData">'+
+                              '<td>'+
+                                    '<table class="w3-table-all w3-hoverable">'+
+                                        '<thead><tr>'+
+                                              '<th>Eklenen Veriler</th>'+
+                                              '<th>Silinen Veriler</th>'+
+                                        '</tr></thead>'+
+                                        '<tr>'+
+                                             '<td>' + registryResult["insertedResults"].HKEY_CLASSES_ROOT +'</td>'+
+                                             '<td>' + registryResult["deletedResults"].HKEY_CLASSES_ROOT  +'</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                             '</td>'+
+                        '</tr>'+
+                        '<tr class="w3-light-grey">'+
+                            '<td><a href="javascript:setHcuToggle()"> HKEY_CURRENT_USER</a></td>'+
+                        '</tr>'+
+                        '<tr id = "trHcuData" style="display:none">'+
+                              '<td>'+
+                                    '<table class="w3-table-all w3-hoverable">'+
+                                        '<thead><tr>'+
+                                              '<th>Eklenen Veriler</th>'+
+                                              '<th>Silinen Veriler</th>'+
+                                        '</tr></thead>'+
+                                        '<tr>'+
+                                             '<td>' + registryResult["insertedResults"].HKEY_CURRENT_USER +'</td>'+
+                                             '<td>' + registryResult["deletedResults"].HKEY_CURRENT_USER  +'</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                             '</td>'+
+                        '</tr>'+
+                        '<tr class="w3-light-grey">'+
+                            '<td><a href="javascript:setHlmToggle()"> HKEY_LOCAL_MACHINE </a></td>'+
+                        '</tr>'+
+                        '<tr id="trHlmData" style="display:none">'+
+                              '<td>'+
+                                    '<table class="w3-table-all w3-hoverable">'+
+                                        '<thead><tr>'+
+                                              '<th>Eklenen Veriler</th>'+
+                                              '<th>Silinen Veriler</th>'+
+                                        '</tr></thead>'+
+                                        '<tr>'+
+                                             '<td>' + registryResult["insertedResults"].HKEY_LOCAL_MACHINE +'</td>'+
+                                             '<td>' + registryResult["deletedResults"].HKEY_LOCAL_MACHINE  +'</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                             '</td>'+
+                        '</tr>'+
+                        '<tr class="w3-light-grey">'+
+                            '<td><a href="javascript:setHuToggle()"> HKEY_USERS </a></td>'+
+                        '</tr>'+
+                        '<tr id="trHuData" style="display:none">'+
+                              '<td>'+
+                                    '<table class="w3-table-all w3-hoverable">'+
+                                        '<thead><tr>'+
+                                              '<th>Eklenen Veriler</th>'+
+                                              '<th>Silinen Veriler</th>'+
+                                        '</tr></thead>'+
+                                        '<tr>'+
+                                             '<td>' + registryResult["insertedResults"].HKEY_USERS +'</td>'+
+                                             '<td>' + registryResult["deletedResults"].HKEY_USERS  +'</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                             '</td>'+
+                        '</tr>'+
+                        '<tr class="w3-light-grey">'+
+                            '<td><a href="javascript:setHccToggle()"> HKEY_CURRENT_CONFIG </a></td>'+
+                        '</tr>'+
+                        '<tr id="trHccData" style="display:none">'+
+                              '<td>'+
+                                    '<table class="w3-table-all w3-hoverable">'+
+                                        '<thead><tr>'+
+                                              '<th>Eklenen Veriler</th>'+
+                                              '<th>Silinen Veriler</th>'+
+                                        '</tr></thead>'+
+                                        '<tr>'+
+                                             '<td>' + registryResult["insertedResults"].HKEY_CURRENT_CONFIG +'</td>'+
+                                             '<td>' + registryResult["deletedResults"].HKEY_CURRENT_CONFIG  +'</td>'+
+                                        '</tr>'+
+                                    '</table>'+
+                             '</td>'+
+                        '</tr>');
+    
+                setTimeout(function(){                  
+                    document.getElementById('loading').style.display = 'none';
+                }, 1000);
+            });
+        });
+        /*Registry toggle*/
+        function setHcrToggle(){
+            $( document ).ready(function() {
+                $("#trHcrData").slideToggle();
+            });
+        };
+
+        function setHcuToggle(){
+            $( document ).ready(function() {
+                $("#trHcuData").slideToggle();
+            });
+        };
+        
+        function setHlmToggle(){
+            $( document ).ready(function() {
+                $("#trHlmData").slideToggle();
+            });
+        };
+
+        function setHuToggle(){
+            $( document ).ready(function() {
+                $("#trHuData").slideToggle();
+            });
+        };
+
+        function setHccToggle(){
+            $( document ).ready(function() {
+                $("#trHccData").slideToggle();
+            });
+        };
+    </script>
+</html>
+       
