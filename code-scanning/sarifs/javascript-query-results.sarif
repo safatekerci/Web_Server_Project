@@ -1,0 +1,997 @@
+{
+  "$schema" : "https://json.schemastore.org/sarif-2.1.0.json",
+  "version" : "2.1.0",
+  "runs" : [ {
+    "tool" : {
+      "driver" : {
+        "name" : "CodeQL",
+        "organization" : "GitHub",
+        "semanticVersion" : "2.12.0",
+        "rules" : [ {
+          "id" : "js/missing-rate-limiting",
+          "name" : "js/missing-rate-limiting",
+          "shortDescription" : {
+            "text" : "Missing rate limiting"
+          },
+          "fullDescription" : {
+            "text" : "An HTTP request handler that performs expensive operations without restricting the rate at which operations can be carried out is vulnerable to denial-of-service attacks."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "warning"
+          },
+          "properties" : {
+            "tags" : [ "security", "external/cwe/cwe-770", "external/cwe/cwe-307", "external/cwe/cwe-400" ],
+            "description" : "An HTTP request handler that performs expensive operations without\n              restricting the rate at which operations can be carried out is vulnerable\n              to denial-of-service attacks.",
+            "id" : "js/missing-rate-limiting",
+            "kind" : "problem",
+            "name" : "Missing rate limiting",
+            "precision" : "high",
+            "problem.severity" : "warning",
+            "security-severity" : "7.5"
+          }
+        } ]
+      },
+      "extensions" : [ {
+        "name" : "codeql/python-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/python-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/python-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/swift-queries",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/swift-queries/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/swift-queries/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/csharp-all",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/csharp-all/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/csharp-all/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/csharp-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/csharp-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/csharp-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/regex",
+        "semanticVersion" : "0.0.4+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/regex/0.0.4/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/regex/0.0.4/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/javascript-queries",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/javascript-queries/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/javascript-queries/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/javascript-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/javascript-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/javascript-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/tutorial",
+        "semanticVersion" : "0.0.1+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/tutorial/0.0.1/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/tutorial/0.0.1/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/suite-helpers",
+        "semanticVersion" : "0.4.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/suite-helpers/0.4.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/suite-helpers/0.4.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/typetracking",
+        "semanticVersion" : "0.0.1+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/typetracking/0.0.1/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/typetracking/0.0.1/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/cpp-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/cpp-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/cpp-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/ruby-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ruby-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ruby-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/go-queries",
+        "semanticVersion" : "0.4.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/go-queries/0.4.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/go-queries/0.4.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/ruby-queries",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ruby-queries/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ruby-queries/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/java-queries",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/java-queries/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/java-queries/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/typos",
+        "semanticVersion" : "0.0.8+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/typos/0.0.8/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/typos/0.0.8/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/javascript-all",
+        "semanticVersion" : "0.4.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/javascript-all/0.4.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/javascript-all/0.4.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/python-all",
+        "semanticVersion" : "0.7.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/python-all/0.7.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/python-all/0.7.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/cpp-all",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/cpp-all/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/cpp-all/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/python-queries",
+        "semanticVersion" : "0.6.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/python-queries/0.6.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/python-queries/0.6.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/ssa",
+        "semanticVersion" : "0.0.8+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ssa/0.0.8/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ssa/0.0.8/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/csharp-queries",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/csharp-queries/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/csharp-queries/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/java-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/java-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/java-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/ruby-all",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ruby-all/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/ruby-all/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/java-all",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/java-all/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/java-all/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/cpp-queries",
+        "semanticVersion" : "0.5.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/cpp-queries/0.5.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/cpp-queries/0.5.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/swift-all",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/swift-all/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/swift-all/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/go-examples",
+        "semanticVersion" : "0.0.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/go-examples/0.0.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/go-examples/0.0.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "legacy-upgrades",
+        "semanticVersion" : "0.0.0",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/legacy-upgrades/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/legacy-upgrades/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/util",
+        "semanticVersion" : "0.0.1+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/util/0.0.1/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/util/0.0.1/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      }, {
+        "name" : "codeql/go-all",
+        "semanticVersion" : "0.4.0+5317fb5b53ebed638c86e02e3bb5f479cb7cba07",
+        "locations" : [ {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/go-all/0.4.0/",
+          "description" : {
+            "text" : "The QL pack root directory."
+          }
+        }, {
+          "uri" : "file:///Users/safatekerci/Tools/codeql/qlpacks/codeql/go-all/0.4.0/qlpack.yml",
+          "description" : {
+            "text" : "The QL pack definition file."
+          }
+        } ]
+      } ]
+    },
+    "artifacts" : [ {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/routes/FileAnalysisCompletedRoute.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 0
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/FileAnalysisCompletedController.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 1
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/routes/IPBlackListRoute.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 2
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/IPBlackListController.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 3
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/routes/LoginRoute.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 4
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/LoginController.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 5
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 6
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/routes/SignUpRoute.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 7
+      }
+    }, {
+      "location" : {
+        "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/SignUpController.js",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 8
+      }
+    } ],
+    "results" : [ {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [a database access](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/FileAnalysisCompletedRoute.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 0
+          },
+          "region" : {
+            "startLine" : 8,
+            "startColumn" : 20,
+            "endColumn" : 55
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "ed2266b1b1f37682:1",
+        "primaryLocationStartColumnFingerprint" : "19"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/FileAnalysisCompletedController.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 1
+          },
+          "region" : {
+            "startLine" : 5,
+            "startColumn" : 6,
+            "endLine" : 7,
+            "endColumn" : 7
+          }
+        },
+        "message" : {
+          "text" : "a database access"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [a database access](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/IPBlackListRoute.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 2
+          },
+          "region" : {
+            "startLine" : 8,
+            "startColumn" : 20,
+            "endColumn" : 45
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "6eae76669fde5583:1",
+        "primaryLocationStartColumnFingerprint" : "19"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/IPBlackListController.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 3
+          },
+          "region" : {
+            "startLine" : 5,
+            "startColumn" : 5,
+            "endLine" : 7,
+            "endColumn" : 7
+          }
+        },
+        "message" : {
+          "text" : "a database access"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/LoginRoute.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 4
+          },
+          "region" : {
+            "startLine" : 7,
+            "startColumn" : 17,
+            "endColumn" : 37
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "9c06151d001e4518:1",
+        "primaryLocationStartColumnFingerprint" : "16"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/LoginController.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 5
+          },
+          "region" : {
+            "startLine" : 9,
+            "startColumn" : 3,
+            "endLine" : 13,
+            "endColumn" : 4
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 19,
+            "startColumn" : 22,
+            "endColumn" : 32
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "4caea1af7d114840:1",
+        "primaryLocationStartColumnFingerprint" : "17"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 29,
+            "startColumn" : 6,
+            "endColumn" : 27
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 20,
+            "startColumn" : 28,
+            "endColumn" : 38
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "4de45a1d085f728b:1",
+        "primaryLocationStartColumnFingerprint" : "23"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 29,
+            "startColumn" : 6,
+            "endColumn" : 27
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 21,
+            "startColumn" : 39,
+            "endColumn" : 49
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "471f8e58868ca327:1",
+        "primaryLocationStartColumnFingerprint" : "34"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 29,
+            "startColumn" : 6,
+            "endColumn" : 27
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 22,
+            "startColumn" : 29,
+            "endColumn" : 39
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "446e9bddaed01e9e:1",
+        "primaryLocationStartColumnFingerprint" : "24"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 29,
+            "startColumn" : 6,
+            "endColumn" : 27
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 23,
+            "startColumn" : 32,
+            "endColumn" : 42
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "a00e2f5b0942de28:1",
+        "primaryLocationStartColumnFingerprint" : "27"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 29,
+            "startColumn" : 6,
+            "endColumn" : 27
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 24,
+            "startColumn" : 26,
+            "endColumn" : 36
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "e27788576aaa736f:1",
+        "primaryLocationStartColumnFingerprint" : "21"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/RouteManager.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 6
+          },
+          "region" : {
+            "startLine" : 29,
+            "startColumn" : 6,
+            "endColumn" : 27
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    }, {
+      "ruleId" : "js/missing-rate-limiting",
+      "ruleIndex" : 0,
+      "rule" : {
+        "id" : "js/missing-rate-limiting",
+        "index" : 0
+      },
+      "message" : {
+        "text" : "This route handler performs [authorization](1), but is not rate-limited."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/routes/SignUpRoute.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 7
+          },
+          "region" : {
+            "startLine" : 8,
+            "startColumn" : 18,
+            "endColumn" : 39
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "94185b7dfa597225:1",
+        "primaryLocationStartColumnFingerprint" : "17"
+      },
+      "relatedLocations" : [ {
+        "id" : 1,
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "codeql-repos/Web_Server_Project/app_server/controllers/SignUpController.js",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 8
+          },
+          "region" : {
+            "startLine" : 10,
+            "startColumn" : 6,
+            "endLine" : 14,
+            "endColumn" : 4
+          }
+        },
+        "message" : {
+          "text" : "authorization"
+        }
+      } ]
+    } ],
+    "newlineSequences" : [ "\r\n", "\n", " ", " " ],
+    "columnKind" : "utf16CodeUnits",
+    "properties" : {
+      "semmle.formatSpecifier" : "sarifv2.1.0"
+    }
+  } ]
+}
